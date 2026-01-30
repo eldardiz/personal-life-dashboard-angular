@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ModuleService } from '../../services/module.service';
-import { StorageService } from '../../services/storage.service';
 import { AuthService } from '../../services/auth.service';
 import { TrackerModule } from '../../models/tracker.model';
 
@@ -19,19 +18,16 @@ export class ModuleSelectorComponent implements OnInit {
 
   constructor(
     private moduleService: ModuleService,
-    private storageService: StorageService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
     this.modules = this.moduleService.getAllModules();
 
-    const username = this.authService.getCurrentUser();
-    if (username) {
-      const saved = this.storageService.getUserModules(username);
-      this.selectedModules = new Set(saved);
-    }
+    // Učitaj sačuvane module iz localStorage
+    const saved = this.getSavedModulesFromLocalStorage();
+    this.selectedModules = new Set(saved);
   }
 
   toggleModule(moduleId: string): void {
@@ -47,13 +43,28 @@ export class ModuleSelectorComponent implements OnInit {
   }
 
   saveAndContinue(): void {
-    const username = this.authService.getCurrentUser();
-    if (username) {
-      this.storageService.setUserModules(
-        username,
-        Array.from(this.selectedModules)
-      );
-      this.router.navigate(['/dashboard']);
-    }
+    // Sačuvaj module u localStorage (username format)
+    this.saveModulesToLocalStorage(Array.from(this.selectedModules));
+    this.router.navigate(['/dashboard']);
+  }
+
+  // Helper metode za localStorage
+  private getSavedModulesFromLocalStorage(): string[] {
+    const currentUser = localStorage.getItem('currentUser'); // Username iz localStorage
+    if (!currentUser) return [];
+
+    const key = `${currentUser}_modules`;
+    const stored = localStorage.getItem(key);
+    return stored ? JSON.parse(stored) : [];
+  }
+
+  private saveModulesToLocalStorage(modules: string[]): void {
+    const currentUser = localStorage.getItem('currentUser'); // Username iz localStorage
+    if (!currentUser) return;
+
+    const key = `${currentUser}_modules`;
+    localStorage.setItem(key, JSON.stringify(modules));
+
+    console.log('✅ Saved modules:', modules, 'to key:', key);
   }
 }

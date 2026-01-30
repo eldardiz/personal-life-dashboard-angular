@@ -19,12 +19,13 @@ export class RegisterComponent implements OnInit {
   confirmPassword: string = '';
   selectedTheme: string = 'blue';
   errorMessage: string = '';
+  isLoading: boolean = false; // Loading state
   themes: any[] = [];
 
   constructor(
     private authService: AuthService,
     private themeService: ThemeService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -36,7 +37,10 @@ export class RegisterComponent implements OnInit {
     this.themeService.setTheme(themeId);
   }
 
-  onRegister(): void {
+  async onRegister(): Promise<void> {
+    // Reset error
+    this.errorMessage = '';
+
     // Validacija
     if (!this.username || !this.email || !this.password) {
       this.errorMessage = 'Please fill in all fields!';
@@ -48,25 +52,42 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    if (this.password.length < 4) {
-      this.errorMessage = 'Password must be at least 4 characters!';
+    if (this.password.length < 6) {
+      this.errorMessage = 'Password must be at least 6 characters!';
       return;
     }
 
-    // Registruj korisnika
-    const success = this.authService.register(
-      this.username,
-      this.email,
-      this.password,
-      this.selectedTheme
-    );
+    this.isLoading = true;
 
-    if (success) {
-      // Automatski login nakon registracije
-      this.authService.login(this.username, this.password);
-      this.router.navigate(['/module-selector']);
-    } else {
-      this.errorMessage = 'Username or email already exists!';
+    try {
+      // Firebase registracija (async)
+      const result = await this.authService.register(
+        this.username,
+        this.email,
+        this.password,
+        this.selectedTheme,
+      );
+
+      if (result.success) {
+        // Automatski login nakon registracije
+        const loginResult = await this.authService.login(
+          this.email,
+          this.password,
+        );
+
+        if (loginResult.success) {
+          this.router.navigate(['/module-selector']);
+        } else {
+          this.errorMessage = 'Registration successful, but login failed.';
+        }
+      } else {
+        this.errorMessage = result.message || 'Registration failed!';
+      }
+    } catch (error) {
+      this.errorMessage = 'An unexpected error occurred.';
+      console.error('Registration error:', error);
+    } finally {
+      this.isLoading = false;
     }
   }
 }

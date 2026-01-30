@@ -13,14 +13,15 @@ import { ThemeService } from '../../services/theme.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  username: string = '';
+  email: string = ''; // Promijenio username → email
   password: string = '';
   errorMessage: string = '';
+  isLoading: boolean = false; // Loading state za UX
 
   constructor(
     private authService: AuthService,
     private themeService: ThemeService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -28,16 +29,32 @@ export class LoginComponent implements OnInit {
     this.themeService.loadTheme();
   }
 
-  onLogin(): void {
-    if (this.authService.login(this.username, this.password)) {
-      // Učitaj korisnikovu temu
-      const userData = this.authService.getUserData(this.username);
-      if (userData && userData.theme) {
-        this.themeService.setTheme(userData.theme);
+  async onLogin(): Promise<void> {
+    // Reset error
+    this.errorMessage = '';
+    this.isLoading = true;
+
+    try {
+      // Firebase login (async)
+      const result = await this.authService.login(this.email, this.password);
+
+      if (result.success) {
+        // Učitaj korisnikovu temu iz Firestore
+        const userData = await this.authService.getUserData();
+        if (userData && userData.theme) {
+          this.themeService.setTheme(userData.theme);
+        }
+
+        // Navigacija na dashboard
+        this.router.navigate(['/module-selector']);
+      } else {
+        this.errorMessage = result.message || 'Login failed!';
       }
-      this.router.navigate(['/module-selector']);
-    } else {
-      this.errorMessage = 'Invalid username or password!';
+    } catch (error) {
+      this.errorMessage = 'An unexpected error occurred.';
+      console.error('Login error:', error);
+    } finally {
+      this.isLoading = false;
     }
   }
 }

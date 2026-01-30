@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { StorageService } from '../../services/storage.service';
 import { ModuleService } from '../../services/module.service';
 import { ThemeService } from '../../services/theme.service';
 import { TrackerModule } from '../../models/tracker.model';
@@ -26,13 +25,13 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private storageService: StorageService,
     private moduleService: ModuleService,
     private themeService: ThemeService,
-    private router: Router
+    private router: Router,
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    // Provjera logina
     const user = this.authService.getCurrentUser();
     if (!user) {
       this.router.navigate(['/login']);
@@ -40,16 +39,46 @@ export class DashboardComponent implements OnInit {
     }
 
     this.username = user;
-    this.loadEnabledModules();
+
+    // Učitaj user podatke iz Firebase
+    await this.loadUserData();
+
+    // Učitaj teme
     this.themes = this.themeService.getThemes();
     this.currentTheme = this.themeService.getCurrentTheme();
   }
 
-  loadEnabledModules(): void {
-    const selectedIds = this.storageService.getUserModules(this.username);
+  async loadUserData(): Promise<void> {
+    const userData = await this.authService.getUserData();
+
+    if (userData) {
+      // Primijeni temu iz Firebase
+      if (userData.theme) {
+        this.themeService.setTheme(userData.theme);
+        this.currentTheme = userData.theme;
+      }
+    }
+
+    // Učitaj module iz localStorage (ne iz Firebase)
+    const selectedIds = this.getSelectedModulesFromLocalStorage();
     this.enabledModules = selectedIds
       .map((id) => this.moduleService.getModuleById(id))
       .filter((m) => m !== undefined) as TrackerModule[];
+  }
+
+  private getSelectedModulesFromLocalStorage(): string[] {
+    // Koristi username iz localStorage umjesto email-a iz Firebase
+    const currentUser = localStorage.getItem('currentUser'); // ← Direktno iz localStorage
+    if (!currentUser) return [];
+
+    const key = `${currentUser}_modules`; // ← Format: "test_modules"
+    const stored = localStorage.getItem(key);
+
+    console.log('🔍 Current user:', currentUser);
+    console.log('🔑 Looking for key:', key);
+    console.log('📦 Found data:', stored);
+
+    return stored ? JSON.parse(stored) : [];
   }
 
   openModule(module: TrackerModule): void {
@@ -68,13 +97,13 @@ export class DashboardComponent implements OnInit {
     this.showThemeSelector = !this.showThemeSelector;
   }
 
-  changeTheme(themeId: string): void {
+  async changeTheme(themeId: string): Promise<void> {
     this.themeService.setTheme(themeId);
-    this.authService.updateUserTheme(this.username, themeId);
+    await this.authService.updateUserTheme(themeId); // ← POPRAVLJEN - samo 1 argument
     this.currentTheme = themeId;
   }
 
-  logout(): void {
-    this.authService.logout();
+  async logout(): Promise<void> {
+    await this.authService.logout();
   }
 }
