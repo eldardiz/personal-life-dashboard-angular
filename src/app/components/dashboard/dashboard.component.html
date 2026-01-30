@@ -1,0 +1,68 @@
+<div class="dashboard-container">
+    <!-- Header -->
+    <div class="dashboard-header">
+      <div class="header-content">
+        <h1>👋 Welcome, {{ username }}!</h1>
+        <p class="date">{{ currentDate | date:'fullDate' }}</p>
+      </div>
+      <div class="header-actions">
+        <button class="btn-theme" (click)="toggleThemeSelector()">🎨 Theme</button>
+        <button class="btn-secondary" (click)="editModules()">⚙️ Edit Modules</button>
+        <button class="btn-logout" (click)="logout()">🚪 Logout</button>
+      </div>
+    </div>
+    <!-- Theme Selector Dropdown -->
+  <div class="theme-dropdown" *ngIf="showThemeSelector">
+    <h3>🎨 Choose Theme</h3>
+    <div class="theme-options">
+      <div 
+        *ngFor="let theme of themes"
+        class="theme-option"
+        [class.active]="currentTheme === theme.id"
+        (click)="changeTheme(theme.id)">
+        <div class="theme-color" [style.background]="theme.primary"></div>
+        <span>{{ theme.name }}</span>
+      </div>
+    </div>
+  </div>
+  
+    <!-- Modules Grid -->
+    <div class="modules-container">
+      <div class="modules-grid" *ngIf="enabledModules.length > 0; else noModules">
+        <div 
+          *ngFor="let module of enabledModules" 
+          class="dashboard-card"
+          [style.border-top-color]="module.color"
+          (click)="openModule(module)">
+          
+          <div class="card-icon" [style.background]="module.color">
+            {{ module.icon }}
+          </div>
+          
+          <div class="card-content">
+            <h3>{{ module.name }}</h3>
+            <p>{{ module.description }}</p>
+          </div>
+          
+          <div class="card-arrow">→</div>
+        </div>
+      </div>
+  
+      <ng-template #noModules>
+        <div class="no-modules">
+          <h2>📭 No modules selected</h2>
+          <p>Click the button below to add some trackers to your dashboard</p>
+          <button class="btn-primary" (click)="editModules()">Add Modules</button>
+        </div>
+      </ng-template>
+    </div>
+  
+    <!-- Generic Tracker Modal -->
+    <app-generic-tracker 
+      *ngIf="selectedModule"
+      [module]="selectedModule"
+      [username]="username"
+      (close)="closeModule()">
+    </app-generic-tracker>
+  </div>
+  

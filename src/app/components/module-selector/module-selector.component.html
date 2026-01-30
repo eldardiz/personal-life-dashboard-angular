@@ -1,0 +1,38 @@
+<div class="selector-container">
+    <div class="header">
+      <h1>🎯 Choose Your Trackers</h1>
+      <p>Select the modules you want on your dashboard</p>
+    </div>
+  
+    <div class="modules-grid">
+      <div 
+        *ngFor="let module of modules" 
+        class="module-card"
+        [class.selected]="isSelected(module.id)"
+        [style.border-color]="isSelected(module.id) ? module.color : '#e0e0e0'"
+        (click)="toggleModule(module.id)">
+        
+        <div class="module-icon" [style.background]="module.color">
+          {{ module.icon }}
+        </div>
+        
+        <h3>{{ module.name }}</h3>
+        <p>{{ module.description }}</p>
+        
+        <div class="checkbox">
+          <span *ngIf="isSelected(module.id)">✓</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="footer">
+      <p>Selected: {{ selectedModules.size }} modules</p>
+      <button 
+        class="btn-continue" 
+        (click)="saveAndContinue()"
+        [disabled]="selectedModules.size === 0">
+        Continue to Dashboard →
+      </button>
+    </div>
+  </div>
+  

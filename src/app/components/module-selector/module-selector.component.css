@@ -1,0 +1,129 @@
+.selector-container {
+    min-height: 100vh;
+    background: var(--background-color);
+    padding: 40px 20px;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .header h1 {
+    font-size: 2.5em;
+    color: var(--text-color);
+    margin-bottom: 10px;
+  }
+  
+  .header p {
+    color: var(--text-color);
+    opacity: 0.7;
+    font-size: 1.2em;
+  }
+  
+  .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+  }
+  
+  .module-card {
+    background: var(--card-bg);
+    border: 3px solid #e0e0e0;
+    border-radius: 15px;
+    padding: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    text-align: center;
+  }
+  
+  .module-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  
+  .module-card.selected {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transform: translateY(-5px);
+  }
+  
+  .module-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    margin: 0 auto 15px;
+  }
+  
+  .module-card h3 {
+    color: var(--text-color);
+    margin-bottom: 10px;
+  }
+  
+  .module-card p {
+    color: var(--text-color);
+    opacity: 0.7;
+    font-size: 0.9em;
+  }
+  
+  .checkbox {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 25px;
+    height: 25px;
+    border: 2px solid #e0e0e0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--card-bg);
+  }
+  
+  .module-card.selected .checkbox {
+    background: #27ae60;
+    border-color: #27ae60;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .footer {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .footer p {
+    color: var(--text-color);
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  
+  .btn-continue {
+    padding: 15px 40px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .btn-continue:hover:not(:disabled) {
+    transform: scale(1.05);
+  }
+  
+  .btn-continue:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  

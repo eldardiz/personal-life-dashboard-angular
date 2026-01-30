@@ -1,0 +1,324 @@
+<div class="modal-overlay" (click)="onClose()">
+    <div class="modal-content" (click)="$event.stopPropagation()" [style.border-top-color]="module.color">
+      
+      <!-- Header -->
+      <div class="modal-header" [style.background]="module.color">
+        <div class="header-left">
+          <span class="module-icon">{{ module.icon }}</span>
+          <h2>{{ module.name }}</h2>
+        </div>
+        <button class="btn-close" (click)="onClose()">✕</button>
+      </div>
+  
+      <!-- Body -->
+      <div class="modal-body">
+        
+        <!-- Add Entry Button -->
+        <button class="btn-add" (click)="toggleForm()" *ngIf="!showForm">
+          ➕ Add New Entry
+        </button>
+  
+        <!-- Entry Form -->
+        <div class="entry-form" *ngIf="showForm">
+          <h3>{{ editingEntry ? '✏️ Edit Entry' : '➕ New Entry' }}</h3>
+          
+          <!-- MOOD TRACKER -->
+          <div class="form-group" *ngIf="module.id === 'mood'">
+            <label>How are you feeling?</label>
+            <select [(ngModel)]="newEntry.value">
+              <option value="">Select mood...</option>
+              <option *ngFor="let mood of moodOptions" [value]="mood">{{ mood }}</option>
+            </select>
+          </div>
+  
+          <!-- HABIT TRACKER -->
+          <div class="form-group" *ngIf="module.id === 'habit'">
+            <label>Habit Name</label>
+            <input 
+              type="text" 
+              [(ngModel)]="newEntry.habitName"
+              placeholder="e.g., Morning run, Read book...">
+          </div>
+          <div class="form-group" *ngIf="module.id === 'habit'">
+            <label>Status</label>
+            <select [(ngModel)]="newEntry.value">
+              <option value="">Select status...</option>
+              <option *ngFor="let status of habitStatus" [value]="status">{{ status }}</option>
+            </select>
+          </div>
+  
+          <!-- WATER INTAKE -->
+          <div class="form-group" *ngIf="module.id === 'water'">
+            <label>Glasses of Water (250ml each)</label>
+            <input 
+              type="number" 
+              [(ngModel)]="newEntry.value"
+              placeholder="e.g., 8"
+              min="0">
+          </div>
+  
+          <!-- SLEEP TRACKER -->
+          <div class="form-group" *ngIf="module.id === 'sleep'">
+            <label>Hours of Sleep</label>
+            <input 
+              type="number" 
+              [(ngModel)]="newEntry.value"
+              placeholder="e.g., 7.5"
+              step="0.5"
+              min="0"
+              max="24">
+          </div>
+          <div class="form-group" *ngIf="module.id === 'sleep'">
+            <label>Sleep Quality</label>
+            <select [(ngModel)]="newEntry.quality">
+              <option value="">Select quality...</option>
+              <option value="😫 Poor">😫 Poor</option>
+              <option value="😐 Fair">😐 Fair</option>
+              <option value="😊 Good">😊 Good</option>
+              <option value="😴 Excellent">😴 Excellent</option>
+            </select>
+          </div>
+  
+          <!-- STUDY PLANNER -->
+          <div class="form-group" *ngIf="module.id === 'study'">
+            <label>Subject</label>
+            <input 
+              type="text" 
+              [(ngModel)]="newEntry.subject"
+              placeholder="e.g., Mathematics, Angular...">
+          </div>
+          <div class="form-group" *ngIf="module.id === 'study'">
+            <label>Duration (minutes)</label>
+            <input 
+              type="number" 
+              [(ngModel)]="newEntry.value"
+              placeholder="e.g., 60"
+              min="0">
+          </div>
+          <div class="form-group" *ngIf="module.id === 'study'">
+            <label>Topics Covered</label>
+            <input 
+              type="text" 
+              [(ngModel)]="newEntry.topics"
+              placeholder="e.g., Components, Services...">
+          </div>
+  
+          <!-- FITNESS/YOGA PLANNER -->
+          <div class="form-group" *ngIf="module.id === 'fitness'">
+            <label>Exercise Type</label>
+            <input 
+              type="text" 
+              [(ngModel)]="newEntry.exerciseType"
+              placeholder="e.g., Yoga, Running, Gym...">
+          </div>
+          <div class="form-group" *ngIf="module.id === 'fitness'">
+            <label>Duration (minutes)</label>
+            <input 
+              type="number" 
+              [(ngModel)]="newEntry.value"
+              placeholder="e.g., 30"
+              min="0">
+          </div>
+          <div class="form-group" *ngIf="module.id === 'fitness'">
+            <label>Intensity</label>
+            <select [(ngModel)]="newEntry.intensity">
+              <option value="">Select intensity...</option>
+              <option value="💚 Light">💚 Light</option>
+              <option value="💛 Moderate">💛 Moderate</option>
+              <option value="🧡 High">🧡 High</option>
+              <option value="❤️ Intense">❤️ Intense</option>
+            </select>
+          </div>
+  
+          <!-- TASK/PROJECT PLANNER -->
+          <div class="form-group" *ngIf="module.id === 'task'">
+            <label>Task Name</label>
+            <input 
+              type="text" 
+              [(ngModel)]="newEntry.value"
+              placeholder="e.g., Complete assignment, Fix bug...">
+          </div>
+          <div class="form-group" *ngIf="module.id === 'task'">
+            <label>Priority</label>
+            <select [(ngModel)]="newEntry.priority">
+              <option value="">Select priority...</option>
+              <option value="🟢 Low">🟢 Low</option>
+              <option value="🟡 Medium">🟡 Medium</option>
+              <option value="🔴 High">🔴 High</option>
+              <option value="🚨 Urgent">🚨 Urgent</option>
+            </select>
+          </div>
+          <div class="form-group" *ngIf="module.id === 'task'">
+            <label>Status</label>
+            <select [(ngModel)]="newEntry.status">
+              <option value="">Select status...</option>
+              <option value="📝 To Do">📝 To Do</option>
+              <option value="🔄 In Progress">🔄 In Progress</option>
+              <option value="✅ Done">✅ Done</option>
+            </select>
+          </div>
+  
+          <!-- MEAL PLANNER -->
+          <div class="form-group" *ngIf="module.id === 'meal'">
+            <label>Meal Type</label>
+            <select [(ngModel)]="newEntry.mealType">
+              <option value="">Select meal type...</option>
+              <option value="🌅 Breakfast">🌅 Breakfast</option>
+              <option value="☀️ Lunch">☀️ Lunch</option>
+              <option value="🌙 Dinner">🌙 Dinner</option>
+              <option value="🍎 Snack">🍎 Snack</option>
+            </select>
+          </div>
+          <div class="form-group" *ngIf="module.id === 'meal'">
+            <label>What did you eat?</label>
+            <input 
+              type="text" 
+              [(ngModel)]="newEntry.value"
+              placeholder="e.g., Pasta with vegetables...">
+          </div>
+          <div class="form-group" *ngIf="module.id === 'meal'">
+            <label>Calories (optional)</label>
+            <input 
+              type="number" 
+              [(ngModel)]="newEntry.calories"
+              placeholder="e.g., 500"
+              min="0">
+          </div>
+  
+          <!-- FINANCE TRACKER -->
+          <div class="form-group" *ngIf="module.id === 'finance'">
+            <label>Type</label>
+            <select [(ngModel)]="newEntry.type">
+              <option value="">Select type...</option>
+              <option value="💸 Expense">💸 Expense</option>
+              <option value="💰 Income">💰 Income</option>
+            </select>
+          </div>
+          <div class="form-group" *ngIf="module.id === 'finance'">
+            <label>Amount (€)</label>
+            <input 
+              type="number" 
+              [(ngModel)]="newEntry.value"
+              placeholder="e.g., 50"
+              step="0.01"
+              min="0">
+          </div>
+          <div class="form-group" *ngIf="module.id === 'finance'">
+            <label>Category</label>
+            <input 
+              type="text" 
+              [(ngModel)]="newEntry.category"
+              placeholder="e.g., Food, Transport, Salary...">
+          </div>
+  
+          <!-- CALENDAR TRACKER -->
+          <div class="form-group" *ngIf="module.id === 'calendar'">
+            <label>Event Name</label>
+            <input 
+              type="text" 
+              [(ngModel)]="newEntry.value"
+              placeholder="e.g., Meeting, Birthday party...">
+          </div>
+          <div class="form-group" *ngIf="module.id === 'calendar'">
+            <label>Event Date & Time</label>
+            <input 
+              type="datetime-local" 
+              [(ngModel)]="newEntry.eventDate">
+          </div>
+  
+          <!-- GRATITUDE JOURNAL -->
+          <div class="form-group" *ngIf="module.id === 'gratitude'">
+            <label>What are you grateful for today?</label>
+            <textarea 
+              [(ngModel)]="newEntry.value"
+              placeholder="Write what you're thankful for..."
+              rows="5"></textarea>
+          </div>
+  
+          <!-- DAILY REFLECTION -->
+          <div class="form-group" *ngIf="module.id === 'reflection'">
+            <label>How was your day?</label>
+            <textarea 
+              [(ngModel)]="newEntry.value"
+              placeholder="Reflect on your day..."
+              rows="5"></textarea>
+          </div>
+  
+          <!-- READING TRACKER -->
+          <div class="form-group" *ngIf="module.id === 'reading'">
+            <label>Book Title</label>
+            <input 
+              type="text" 
+              [(ngModel)]="newEntry.bookTitle"
+              placeholder="e.g., The Lord of the Rings">
+          </div>
+          <div class="form-group" *ngIf="module.id === 'reading'">
+            <label>Pages Read</label>
+            <input 
+              type="number" 
+              [(ngModel)]="newEntry.value"
+              placeholder="e.g., 25"
+              min="0">
+          </div>
+  
+          <!-- Notes (za sve module) -->
+          <div class="form-group">
+            <label>Notes (optional)</label>
+            <textarea 
+              [(ngModel)]="newEntry.notes"
+              placeholder="Add additional notes..."
+              rows="3"></textarea>
+          </div>
+  
+          <!-- Form Actions -->
+          <div class="form-actions">
+            <button class="btn-cancel" (click)="toggleForm()">Cancel</button>
+            <button class="btn-save" (click)="addEntry()">
+              {{ editingEntry ? 'Update' : 'Save' }}
+            </button>
+          </div>
+        </div>
+  
+        <!-- Entries List -->
+        <div class="entries-list">
+          <h3 *ngIf="entries.length > 0">📊 Your Entries</h3>
+          <p class="no-entries" *ngIf="entries.length === 0">
+            No entries yet. Start tracking by adding your first entry! 🚀
+          </p>
+  
+          <div class="entry-card" *ngFor="let entry of entries">
+            <div class="entry-header">
+              <span class="entry-date">{{ entry.date | date:'medium' }}</span>
+              <div class="entry-actions">
+                <button class="btn-edit" (click)="editEntry(entry)">✏️</button>
+                <button class="btn-delete" (click)="deleteEntry(entry.id)">🗑️</button>
+              </div>
+            </div>
+            
+            <div class="entry-content">
+              <div class="entry-value" [innerHTML]="formatEntryValue(entry)"></div>
+              <div class="entry-notes" *ngIf="entry.notes">
+                <strong>Notes:</strong> {{ entry.notes }}
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Stats Section -->
+        <div class="stats-section" *ngIf="entries.length > 0">
+          <h3>📈 Quick Stats</h3>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-value">{{ entries.length }}</div>
+              <div class="stat-label">Total Entries</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">{{ getStreakDays() }}</div>
+              <div class="stat-label">Day Streak 🔥</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,38 @@
+<div class="login-container">
+    <div class="login-card">
+      <h1>🌟 Personal Life Dashboard</h1>
+      <p class="subtitle">Track your life, achieve your goals</p>
+      
+      <form (ngSubmit)="onLogin()">
+        <div class="form-group">
+          <label>Username or Email</label>
+          <input 
+            type="text" 
+            [(ngModel)]="username" 
+            name="username"
+            placeholder="Enter your username or email"
+            required>
+        </div>
+        
+        <div class="form-group">
+          <label>Password</label>
+          <input 
+            type="password" 
+            [(ngModel)]="password" 
+            name="password"
+            placeholder="Enter your password"
+            required>
+        </div>
+        
+        <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+        
+        <button type="submit" class="btn-login">Login</button>
+      </form>
+  
+      <p class="register-link">
+        Don't have an account? 
+        <a routerLink="/register">Register here</a>
+      </p>
+    </div>
+  </div>
+  
