@@ -68,11 +68,14 @@ export class AuthService {
         userData,
       );
 
+      // 🔥 DODAJ OVE 2 LINIJE:
+      localStorage.setItem('currentUser', username);
+      localStorage.setItem('userEmail', email);
+
       return { success: true };
     } catch (error: any) {
       console.error('Registration error:', error);
 
-      // User-friendly error poruke
       let message = 'Registration failed.';
       if (error.code === 'auth/email-already-in-use') {
         message = 'Email is already in use.';
@@ -107,7 +110,11 @@ export class AuthService {
 
       if (userDoc.exists()) {
         const userData = userDoc.data() as User;
-        // Ovdje možeš učitati temu i primijeniti je
+
+        // 🔥 DODAJ OVE 2 LINIJE:
+        localStorage.setItem('currentUser', userData.username);
+        localStorage.setItem('userEmail', userData.email);
+
         console.log('User logged in:', userData);
       }
 
