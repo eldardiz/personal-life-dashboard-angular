@@ -1,59 +1,209 @@
-# PersonalLifeDashboard
+# Personal Life Dashboard
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
+Web aplikacija za organizaciju studentskog života sa integrisanim zabavnim i produktivnim modulima.  
+Cilj projekta je omogućiti studentima da na jednom mjestu prate svoje obaveze, ali i koriste interaktivne module za učenje i opuštanje.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 Kako pokrenuti projekat
 
-```bash
+### Instalacija
+
+1. Instalirati potrebne zavisnosti:
+npm install
+Pokrenuti development server:
+
 ng serve
-```
+Aplikacija će biti dostupna na:
+http://localhost:4200/
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+🔥 Firebase konfiguracija i deploy
+Projekat koristi Firebase Hosting za produkcioni deploy.
 
-## Code scaffolding
+🌍 Live verzija
+Aplikacija je dostupna na:
+https://personal-life-dashboard-f9406.web.app
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Build za production:
 
-```bash
-ng generate component component-name
-```
+ng build --configuration production
+Deploy na Firebase:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+firebase deploy --only hosting
 
-```bash
-ng generate --help
-```
+📱 Funkcionalnosti
+Module Selector
+Glavni meni aplikacije sadrži dvije sekcije:
 
-## Building
+Tracker moduli
+Korisnik bira koje module želi prikazati na svom dashboard-u.
+Svaki modul se selektuje pomoću checkbox-a, a izbor se čuva u localStorage-u po korisničkom imenu.
 
-To build the project run:
+Student Fun Zone
+Interaktivni moduli koji se ne prikazuju na dashboard-u, već se otvaraju kao zasebne stranice.
 
-```bash
-ng build
-```
+🎯 Student Fun Zone moduli
+🎲 Bingo
+Klasična Bingo igra sa 5x5 tablicom
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Nasumično izvlačenje brojeva
 
-## Running unit tests
+Automatsko označavanje polja
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Detekcija pobjede (red, kolona ili dijagonala)
 
-```bash
-ng test
-```
+WIN animacija
 
-## Running end-to-end tests
+Reset dugme za novu igru
 
-For end-to-end (e2e) testing, run:
+🧠 Kviz
+5 pitanja vezanih za web development
 
-```bash
-ng e2e
-```
+Radio buttons i checkboxes za odgovore
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Vizuelna provjera tačnosti (zeleno / crveno)
 
-## Additional Resources
+Automatski izračun skora
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Bonus animacija za perfect score (konfeti)
+
+📋 Kanban Board
+Tri kolone: To Do, In Progress, Done
+
+Dodavanje kartica sa naslovom i opisom
+
+Drag & drop između kolona
+
+Brisanje kartica
+
+Export u PDF (koristeći window.print)
+
+Slanje putem email-a (mailto link)
+
+🎨 Whiteboard
+Canvas element za crtanje
+
+Birač boje (color picker)
+
+Podešavanje debljine linije
+
+Eraser funkcija
+
+Clear dugme za brisanje svega
+
+Download crteža kao .png
+
+Watermark logo u pozadini (opacity 0.08)
+
+📌 Vision Board
+Dodavanje post-it bilješki (nasumične boje)
+
+Dodavanje slika iz galerije
+
+Dodavanje citata
+
+Drag & drop svih elemenata
+
+Pin dugme za uklanjanje elemenata
+
+Recent tray (posljednja 3 uklonjena elementa)
+
+Restore funkcija
+
+Automatsko čuvanje u localStorage
+
+🏗️ Tehnička implementacija
+Frontend
+Angular 19 sa standalone komponentama 
+
+TypeScript za type safety
+
+FormsModule za two-way binding
+
+Specifične tehnologije po modulu
+Canvas API (Whiteboard)
+
+Drag & Drop API (Kanban, Vision Board)
+
+LocalStorage (čuvanje stanja aplikacije)
+
+Window Print API (PDF export)
+
+Mailto protokol (email funkcionalnost)
+
+🔐 Backend i hosting
+Firebase Hosting (production deploy)
+
+Firebase Authentication (Email / Password)
+
+Firebase Firestore (planirano za buduće verzije)
+
+📂 Struktura projekta
+src/
+├── app/
+│   ├── components/          # Login, Register, Module Selector
+│   ├── modules/             # Fun Zone moduli
+│   │   ├── bingo/
+│   │   ├── quiz/
+│   │   ├── kanban-board/
+│   │   ├── whiteboard/
+│   │   └── vision-board/
+│   ├── services/            # AuthService, ModuleService
+│   └── models/              # TypeScript interfejsi
+└── assets/
+    └── images/              # Slike i Vision Board galerija
+🎨 Dizajn
+Aplikacija koristi CSS varijable za podršku različitih tema
+
+--background-color
+
+--text-color
+
+--card-bg
+
+--primary-color
+
+--secondary-color
+
+Layout je responsive i prilagođen desktop, tablet i mobilnim uređajima.
+
+🌍 Live verzija
+Aplikacija je dostupna na:
+https://personal-life-dashboard-f9406.web.app
+
+🔐 Testiranje
+Aplikacija koristi demonstracionu login logiku.
+
+Email: test@email.com
+
+Password: 123456
+
+Napomena: Fokus projekta je frontend funkcionalnost, ne kompletna backend validacija.
+
+📝 Napomene
+Podaci se čuvaju lokalno u browser-u (localStorage)
+
+Svaki korisnik ima sopstveni set podataka baziran na username-u
+
+Fun Zone moduli mogu se koristiti i bez login-a direktnim pristupom URL-u
+
+Whiteboard i Vision Board se automatski čuvaju
+
+
+📦 Dependencies (ključni paketi)
+@angular/core ^19.x
+
+@angular/router ^19.x
+
+@angular/forms ^19.x
+
+firebase ^10.x
+
+html2canvas ^1.x
+
+👨‍💻 Autor
+Ime i prezime: Eldar Dizdarević
+Email: eldar@email.com
+Akademska godina: 2025/2026
+Predmet: Web Programiranje 2
+Projekat: Personal Life Dashboard
