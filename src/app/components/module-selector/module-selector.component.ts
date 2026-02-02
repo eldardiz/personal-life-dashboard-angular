@@ -1,20 +1,74 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router'; // ← Dodaj RouterModule!
 import { ModuleService } from '../../services/module.service';
 import { AuthService } from '../../services/auth.service';
 import { TrackerModule } from '../../models/tracker.model';
 
+// Interface za Fun Zone module
+interface FunZoneModule {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  color: string;
+  route: string;
+}
+
 @Component({
   selector: 'app-module-selector',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule], // ← RouterModule dodat!
   templateUrl: './module-selector.component.html',
   styleUrls: ['./module-selector.component.css'],
 })
 export class ModuleSelectorComponent implements OnInit {
   modules: TrackerModule[] = [];
   selectedModules: Set<string> = new Set();
+
+  // ========== FUN ZONE MODULI ==========
+  funZoneModules: FunZoneModule[] = [
+    {
+      id: 'bingo',
+      name: 'Bingo',
+      description: 'Zabavna bingo igra za studente',
+      icon: '🎲',
+      color: '#FF6B9D',
+      route: '/modules/bingo',
+    },
+    {
+      id: 'quiz',
+      name: 'Kviz',
+      description: 'Testiraj svoje znanje',
+      icon: '❓',
+      color: '#4ECFAA',
+      route: '/modules/quiz',
+    },
+    {
+      id: 'kanban',
+      name: 'Kanban Board',
+      description: 'Organizuj zadatke',
+      icon: '📋',
+      color: '#95E1D3',
+      route: '/modules/kanban-board',
+    },
+    {
+      id: 'whiteboard',
+      name: 'Whiteboard',
+      description: 'Digitalna ploča za crtanje',
+      icon: '✏️',
+      color: '#A8E6CF',
+      route: '/modules/whiteboard',
+    },
+    {
+      id: 'vision-board',
+      name: 'Vision Board',
+      description: 'Kreiraj svoju inspirativnu ploču',
+      icon: '📌',
+      color: '#FFD3B6',
+      route: '/modules/vision-board',
+    },
+  ];
 
   constructor(
     private moduleService: ModuleService,
@@ -50,7 +104,7 @@ export class ModuleSelectorComponent implements OnInit {
 
   // Helper metode za localStorage
   private getSavedModulesFromLocalStorage(): string[] {
-    const currentUser = localStorage.getItem('currentUser'); // Username iz localStorage
+    const currentUser = localStorage.getItem('currentUser');
     if (!currentUser) return [];
 
     const key = `${currentUser}_modules`;
@@ -59,7 +113,7 @@ export class ModuleSelectorComponent implements OnInit {
   }
 
   private saveModulesToLocalStorage(modules: string[]): void {
-    const currentUser = localStorage.getItem('currentUser'); // Username iz localStorage
+    const currentUser = localStorage.getItem('currentUser');
     if (!currentUser) return;
 
     const key = `${currentUser}_modules`;

@@ -1,0 +1,127 @@
+<!-- HERO SEKCIJA -->
+<article class="intro-article">
+  <div class="intro-text">
+    <h1>Student Fun Zone – Visual Board</h1>
+    <p>
+      Visual Board ti služi kao mala "inspo" ploča, možeš dodavati post-it
+      bilješke, slike ili kratke citate i slagati ih kako želiš.
+    </p>
+    <p>
+      Sve što dodaš možeš pomjerati mišem, obrisati pin, i vratiti ga iz
+      "recent" sekcije. Ploča se automatski pamti u browseru.
+    </p>
+  </div>
+  <div class="intro-media">
+    <img
+      src="assets/images/visual-board-hero.jpg"
+      alt="Visual board za studente"
+    />
+  </div>
+</article>
+
+<!-- VISION BOARD SEKCIJA -->
+<section class="vision-section">
+  <div class="vision-card">
+    <div class="vision-toolbar">
+      <button (click)="addNote()" type="button">+ Post-it</button>
+      <button (click)="addImage()" type="button">+ Slika</button>
+      <button (click)="addQuote()" type="button">+ Citat</button>
+      <button (click)="saveBoard()" type="button">Snimi</button>
+      <button (click)="clearBoard()" type="button">Očisti ploču</button>
+      <button (click)="exportPdf()" type="button">Snimi kao PDF</button>
+      <button (click)="openMailPopup()" type="button">Pošalji mailom</button>
+    </div>
+
+    <!-- VISION BOARD -->
+    <div #boardElement class="vision-board" aria-label="Visual board zona">
+      <div
+        *ngFor="let item of boardItems; let i = index"
+        [class]="item.className"
+        [style.left.px]="item.left"
+        [style.top.px]="item.top"
+        [attr.contenteditable]="item.type !== 'image'"
+        (mousedown)="startDrag($event, i)"
+        [innerHTML]="item.html | safeHtml"
+      >
+        <button
+          class="delete-btn"
+          (click)="removeItem(i, $event)"
+          type="button"
+        >
+          📌
+        </button>
+      </div>
+    </div>
+
+    <!-- RECENT TRAY -->
+    <div class="recent-tray">
+      <div class="recent-header">
+        <h3>Posljednje skinuto (max 3)</h3>
+        <button (click)="clearRecent()" class="restore-btn" type="button">
+          Očisti skinute
+        </button>
+      </div>
+      <div class="recent-items">
+        <div *ngIf="recentRemoved.length === 0">
+          <em>Nema skinutih elemenata.</em>
+        </div>
+        <div
+          *ngFor="let item of recentRemoved; let i = index"
+          class="recent-item"
+        >
+          <div *ngIf="item.type === 'image'">
+            <img [src]="extractImageSrc(item.html)" alt="Recent image" />
+          </div>
+          <div *ngIf="item.type !== 'image'">
+            {{ getItemPreview(item) }}
+          </div>
+          <button (click)="restoreRecent(i)" class="restore-btn" type="button">
+            Vrati
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <p class="vision-back-link">
+      <a routerLink="/module-selector">← Povratak na Student Fun Zone</a>
+    </p>
+  </div>
+</section>
+
+<!-- MAIL POPUP -->
+<div
+  class="modal-overlay"
+  [class.visible]="showMailPopup"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="mailPopupTitle"
+>
+  <div class="modal-card">
+    <button
+      class="modal-close-btn"
+      type="button"
+      aria-label="Zatvori"
+      (click)="closeMailPopup()"
+    >
+      ×
+    </button>
+    <h2 id="mailPopupTitle">Pošalji Visual Board mailom</h2>
+    <p>Unesi email na koji želiš poslati sadržaj.</p>
+
+    <div class="form-group">
+      <label for="recipientEmail">Email</label>
+      <input
+        type="email"
+        [(ngModel)]="recipientEmail"
+        [style.borderColor]="emailError ? '#dc2626' : '#d1d5db'"
+        placeholder="primjer@email.com"
+      />
+      <p class="error-message" *ngIf="emailError">Unesi ispravan email.</p>
+    </div>
+
+    <div class="modal-actions">
+      <button type="button" (click)="sendEmail()">Pošalji</button>
+      <button type="button" (click)="closeMailPopup()">Poništi</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,267 @@
+<!-- HERO SEKCIJA -->
+<article class="intro-article">
+  <div class="intro-text">
+    <h1>Student Fun Zone – Kviz</h1>
+    <p>
+      Kratki kviz za provjeru znanja iz osnova web razvoja i rada na projektima.
+      Neka pitanja imaju jedan tačan odgovor, a neka više tačnih odgovora.
+    </p>
+    <p>
+      Odvojite par minuta, odgovorite iskreno i pogledajte koliko toga već
+      znate.
+    </p>
+  </div>
+  <div class="intro-media">
+    <img src="assets/images/quiz.jpg" alt="Studenti rješavaju kviz" />
+  </div>
+</article>
+
+<!-- KVIZ SEKCIJA -->
+<section class="quiz-section">
+  <div class="quiz-card">
+    <h2>Mini kviz o web razvoju</h2>
+    <p class="quiz-intro">
+      Označite odgovore, zatim kliknite na "Provjerite odgovore" da vidite
+      rezultat.
+    </p>
+
+    <form class="quiz-form">
+      <!-- PITANJE 1 -->
+      <div
+        class="quiz-question"
+        [class.correct]="questionStatus.q1 === true"
+        [class.incorrect]="questionStatus.q1 === false"
+      >
+        <h3>1. Šta radi CSS u web razvoju?</h3>
+        <label>
+          <input
+            type="radio"
+            name="q1"
+            value="Stilizuje izgled stranice"
+            [(ngModel)]="userAnswers.q1"
+          />
+          Stilizuje izgled stranice </label
+        ><br />
+        <label>
+          <input
+            type="radio"
+            name="q1"
+            value="Čuva podatke u bazi"
+            [(ngModel)]="userAnswers.q1"
+          />
+          Čuva podatke u bazi </label
+        ><br />
+        <label>
+          <input
+            type="radio"
+            name="q1"
+            value="Kompajlira programski kod"
+            [(ngModel)]="userAnswers.q1"
+          />
+          Kompajlira programski kod
+        </label>
+      </div>
+
+      <!-- PITANJE 2 -->
+      <div
+        class="quiz-question"
+        [class.correct]="questionStatus.q2 === true"
+        [class.incorrect]="questionStatus.q2 === false"
+      >
+        <h3>2. Koje od navedenih spadaju u frontend tehnologije?</h3>
+        <label>
+          <input
+            type="checkbox"
+            value="HTML"
+            [(ngModel)]="userAnswers.q2.HTML"
+          />
+          HTML </label
+        ><br />
+        <label>
+          <input type="checkbox" value="CSS" [(ngModel)]="userAnswers.q2.CSS" />
+          CSS </label
+        ><br />
+        <label>
+          <input
+            type="checkbox"
+            value="JavaScript"
+            [(ngModel)]="userAnswers.q2.JavaScript"
+          />
+          JavaScript </label
+        ><br />
+        <label>
+          <input type="checkbox" value="PHP" [(ngModel)]="userAnswers.q2.PHP" />
+          PHP
+        </label>
+      </div>
+
+      <!-- PITANJE 3 -->
+      <div
+        class="quiz-question"
+        [class.correct]="questionStatus.q3 === true"
+        [class.incorrect]="questionStatus.q3 === false"
+      >
+        <h3>3. Koji HTML tag koristimo za najvažniji naslov na stranici?</h3>
+        <label>
+          <input
+            type="radio"
+            name="q3"
+            value="<h1>"
+            [(ngModel)]="userAnswers.q3"
+          />
+          &lt;h1&gt; </label
+        ><br />
+        <label>
+          <input
+            type="radio"
+            name="q3"
+            value="<title>"
+            [(ngModel)]="userAnswers.q3"
+          />
+          &lt;title&gt; </label
+        ><br />
+        <label>
+          <input
+            type="radio"
+            name="q3"
+            value="<header>"
+            [(ngModel)]="userAnswers.q3"
+          />
+          &lt;header&gt;
+        </label>
+      </div>
+
+      <!-- PITANJE 4 -->
+      <div
+        class="quiz-question"
+        [class.correct]="questionStatus.q4 === true"
+        [class.incorrect]="questionStatus.q4 === false"
+      >
+        <h3>
+          4. Šta se smatra dobrom praksom pri radu na fakultetskom projektu?
+        </h3>
+        <label>
+          <input
+            type="checkbox"
+            value="Redovan commit na GitHub"
+            [(ngModel)]="userAnswers.q4.commit"
+          />
+          Redovan commit na GitHub </label
+        ><br />
+        <label>
+          <input
+            type="checkbox"
+            value="Raditi sve u jednom ZIP fajlu bez historije"
+            [(ngModel)]="userAnswers.q4.zip"
+          />
+          Raditi sve u jednom ZIP fajlu bez historije </label
+        ><br />
+        <label>
+          <input
+            type="checkbox"
+            value="Pisati README dokumentaciju"
+            [(ngModel)]="userAnswers.q4.readme"
+          />
+          Pisati README dokumentaciju </label
+        ><br />
+        <label>
+          <input
+            type="checkbox"
+            value="Ignorisati dizajn i strukturu"
+            [(ngModel)]="userAnswers.q4.ignore"
+          />
+          Ignorisati dizajn i strukturu
+        </label>
+      </div>
+
+      <!-- PITANJE 5 -->
+      <div
+        class="quiz-question"
+        [class.correct]="questionStatus.q5 === true"
+        [class.incorrect]="questionStatus.q5 === false"
+      >
+        <h3>5. Koji opis najbolje objašnjava „responsive" dizajn?</h3>
+        <label>
+          <input
+            type="radio"
+            name="q5"
+            value="Sajt se prilagođava različitim veličinama ekrana"
+            [(ngModel)]="userAnswers.q5"
+          />
+          Sajt se prilagođava različitim veličinama ekrana </label
+        ><br />
+        <label>
+          <input
+            type="radio"
+            name="q5"
+            value="Sajt radi samo na desktop računarima"
+            [(ngModel)]="userAnswers.q5"
+          />
+          Sajt radi samo na desktop računarima </label
+        ><br />
+        <label>
+          <input
+            type="radio"
+            name="q5"
+            value="Sajt ima mnogo animacija i efekata"
+            [(ngModel)]="userAnswers.q5"
+          />
+          Sajt ima mnogo animacija i efekata
+        </label>
+      </div>
+
+      <div class="quiz-actions">
+        <button type="button" (click)="checkAnswers()" class="primary-btn">
+          Provjerite odgovore
+        </button>
+        <button
+          type="button"
+          (click)="restart()"
+          class="secondary-btn"
+          *ngIf="showRestartBtn"
+        >
+          Ponovo
+        </button>
+      </div>
+
+      <div class="quiz-result" [class.visible]="showResult" *ngIf="showResult">
+        Rezultat: <strong>{{ score }}</strong> / {{ maxScore }}
+      </div>
+    </form>
+
+    <p class="quiz-back-link">
+      <a routerLink="/module-selector">← Povratak na Student Fun Zone</a>
+    </p>
+  </div>
+</section>
+
+<!-- MODAL ZA SAVRŠEN REZULTAT -->
+<div
+  class="modal-overlay"
+  [class.visible]="showPerfectOverlay"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="quizPerfectTitle"
+>
+  <div class="modal-card">
+    <button
+      class="modal-close-btn"
+      type="button"
+      aria-label="Zatvori"
+      (click)="hidePerfectOverlay()"
+    >
+      ×
+    </button>
+    <h2 id="quizPerfectTitle">Savršen rezultat!</h2>
+    <p>
+      Odgovorili ste tačno na sva pitanja. Sjajan posao! Možete pokušati ponovo
+      ili se vratiti na druge aktivnosti.
+    </p>
+    <div class="modal-actions">
+      <button type="button" (click)="restart()">Ponovo</button>
+      <a routerLink="/module-selector" class="secondary-btn"
+        >← Student Fun Zone</a
+      >
+    </div>
+  </div>
+</div>

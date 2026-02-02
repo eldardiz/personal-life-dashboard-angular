@@ -1,0 +1,165 @@
+<!-- HERO SEKCIJA -->
+<article class="intro-article">
+  <div class="intro-text">
+    <h1>Student Fun Zone – Kanban Board</h1>
+    <p>
+      Kanban ploča se koristi za organizaciju zadataka kroz faze rada. Imaš tri
+      kolone: To Do (planirano), In Progress (u toku) i Done (završeno).
+    </p>
+    <p>
+      Zadaci se dodaju kroz dugme "Dodaj zadatak", a zatim se drag & drop-om
+      prebacuju između kolona.
+    </p>
+  </div>
+  <div class="intro-media">
+    <img src="assets/images/kanban-hero.jpg" alt="Kanban board za studente" />
+  </div>
+</article>
+
+<!-- KANBAN SEKCIJA -->
+<section class="kanban-section">
+  <div class="kanban-card" #kanbanPrintArea>
+    <div class="kanban-toolbar">
+      <button (click)="openTaskModal()" type="button">Dodaj zadatak</button>
+      <button (click)="savePng()" type="button">Snimi kao PNG</button>
+      <button (click)="openClearModal()" type="button">Očisti ploču</button>
+      <button (click)="exportPdf()" type="button">Snimi kao PDF</button>
+    </div>
+
+    <div class="board">
+      <!-- TO DO KOLONA -->
+      <div
+        class="column"
+        data-status="todo"
+        (dragover)="onDragOver($event)"
+        (drop)="onDrop($event, 'todo')"
+      >
+        <h2>To Do</h2>
+        <div class="taskList">
+          <div
+            *ngFor="let task of getTasksByStatus('todo')"
+            class="task"
+            [attr.data-id]="task.id"
+            draggable="true"
+            (dragstart)="onDragStart($event, task)"
+            (dragend)="onDragEnd($event)"
+          >
+            {{ task.text }}
+          </div>
+        </div>
+      </div>
+
+      <!-- IN PROGRESS KOLONA -->
+      <div
+        class="column"
+        data-status="inprogress"
+        (dragover)="onDragOver($event)"
+        (drop)="onDrop($event, 'inprogress')"
+      >
+        <h2>In Progress</h2>
+        <div class="taskList">
+          <div
+            *ngFor="let task of getTasksByStatus('inprogress')"
+            class="task"
+            [attr.data-id]="task.id"
+            draggable="true"
+            (dragstart)="onDragStart($event, task)"
+            (dragend)="onDragEnd($event)"
+          >
+            {{ task.text }}
+          </div>
+        </div>
+      </div>
+
+      <!-- DONE KOLONA -->
+      <div
+        class="column"
+        data-status="done"
+        (dragover)="onDragOver($event)"
+        (drop)="onDrop($event, 'done')"
+      >
+        <h2>Done</h2>
+        <div class="taskList">
+          <div
+            *ngFor="let task of getTasksByStatus('done')"
+            class="task"
+            [attr.data-id]="task.id"
+            draggable="true"
+            (dragstart)="onDragStart($event, task)"
+            (dragend)="onDragEnd($event)"
+          >
+            {{ task.text }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="kanban-back-link">
+    <a routerLink="/module-selector">← Povratak na Student Fun Zone</a>
+  </p>
+</section>
+
+<!-- MODAL: ADD TASK -->
+<div
+  class="modal-overlay"
+  [class.visible]="showTaskModal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="taskModalTitle"
+>
+  <div class="modal-card">
+    <button
+      class="modal-close-btn"
+      type="button"
+      aria-label="Zatvori"
+      (click)="closeTaskModal()"
+    >
+      ×
+    </button>
+    <h2 id="taskModalTitle">Dodaj novi zadatak</h2>
+
+    <div class="form-group">
+      <label for="taskText">Naziv zadatka</label>
+      <input
+        type="text"
+        [(ngModel)]="newTaskText"
+        [style.borderColor]="taskError ? '#dc2626' : '#d1d5db'"
+        placeholder="npr. Napraviti layout za homepage"
+      />
+      <p class="error-message" *ngIf="taskError">Unesi naziv zadatka.</p>
+    </div>
+
+    <div class="form-group">
+      <label for="taskStatus">Kolona</label>
+      <select [(ngModel)]="newTaskStatus">
+        <option value="todo">To Do</option>
+        <option value="inprogress">In Progress</option>
+        <option value="done">Done</option>
+      </select>
+    </div>
+
+    <div class="modal-actions">
+      <button (click)="createTask()" type="button">Dodaj</button>
+      <button (click)="closeTaskModal()" type="button">Poništi</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: CLEAR CONFIRM -->
+<div
+  class="modal-overlay"
+  [class.visible]="showClearModal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="clearModalTitle"
+>
+  <div class="modal-card">
+    <h2 id="clearModalTitle">Očisti cijelu ploču?</h2>
+    <p>Ovo briše sve zadatke.</p>
+    <div class="modal-actions">
+      <button (click)="clearBoard()" type="button">Da, obriši</button>
+      <button (click)="closeClearModal()" type="button">Ne</button>
+    </div>
+  </div>
+</div>

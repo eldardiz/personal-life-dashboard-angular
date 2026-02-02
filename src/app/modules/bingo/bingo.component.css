@@ -1,0 +1,1300 @@
+/* global styles */
+
+html {
+  background: linear-gradient(135deg, #0f172a, #1f2937);
+}
+
+body {
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  color: #111827;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER, LOGO, NAV */
+
+/* top-header */
+
+.top-header {
+  max-width: 1100px;
+  margin: 24px auto 0 auto;
+  padding: 12px 20px;
+  background-color: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+
+.brand img {
+  height: 54px;
+  width: auto;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.brand-kicker {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #6b7280;
+}
+
+.brand-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* navigation */
+
+.nav-header {
+  max-width: 1100px;
+  margin: 12px auto 0 auto;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.1);
+  box-sizing: border-box;
+}
+
+.main-nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.main-nav a {
+  text-decoration: none;
+  padding: 8px 18px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  background: #e5e7eb;
+  color: #0f172a;
+  transition: 0.2s ease;
+}
+
+.main-nav a:hover {
+  background: #1d4ed8;
+  color: #fff;
+}
+
+.main-nav a.is-active {
+  background: #1d4ed8;
+  color: white;
+}
+
+/* Linkovi */
+
+a {
+  color: #1d4ed8;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* headings */
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+  color: #111827;
+}
+
+h1 {
+  font-size: 26px;
+  margin-bottom: 12px;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+h3 {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+/* main */
+
+main {
+  flex: 1;
+  max-width: 1100px;
+  width: 100%;
+  margin: 18px auto 32px auto;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+
+/* intro1 */
+
+.intro-article {
+  background-color: #ffffff;
+  border-radius: 14px;
+  padding: 24px 28px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.17);
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: 24px;
+  margin-bottom: 24px;
+  box-sizing: border-box;
+}
+
+.intro-text p {
+  margin-bottom: 10px;
+  color: #4b5563;
+}
+
+.intro-media img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* Cards */
+
+.course-groups {
+  margin-bottom: 24px;
+}
+
+.course-groups h2 {
+  margin-bottom: 12px;
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.course-card {
+  background-color: #ffffff;
+  border-radius: 14px;
+  padding: 16px 18px;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.14);
+  box-sizing: border-box;
+}
+
+.course-card p {
+  margin-bottom: 8px;
+  color: #4b5563;
+}
+
+.course-card ul {
+  margin: 0;
+  padding-left: 18px;
+  color: #4b5563;
+}
+
+/* Info  */
+
+.info-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.info-block {
+  background-color: #ffffff;
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.14);
+  box-sizing: border-box;
+}
+
+.info-block p {
+  margin-bottom: 10px;
+  color: #4b5563;
+}
+
+/* Footer */
+
+.site-footer {
+  background: transparent;
+  color: #e5e7eb;
+  text-align: center;
+  padding: 16px 12px 24px 12px;
+  font-size: 12px;
+}
+
+/* Tabele */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.14);
+  margin-bottom: 16px;
+}
+
+td,
+th {
+  font-size: 13px;
+  border: solid 1px #e5e7eb;
+  padding: 8px 6px;
+}
+
+th {
+  color: #111827;
+  background-color: #e0ebff;
+  height: 32px;
+  font-weight: 600;
+}
+
+td:nth-child(4) {
+  text-align: right;
+  padding-right: 8px;
+}
+
+tr:nth-child(odd) {
+  background-color: #f9fafb;
+}
+
+/* Iframe */
+
+iframe {
+  margin-top: 16px;
+  border-radius: 12px;
+  border: none;
+}
+
+/* Form, contact */
+
+fieldset {
+  width: 100%;
+  max-width: 520px;
+  margin-bottom: 16px;
+  padding: 14px 16px 18px 16px;
+  background-color: #f3f4f6;
+  border-radius: 12px;
+  border: none;
+}
+
+fieldset legend {
+  color: #111827;
+  font-weight: 600;
+  padding: 0 4px;
+}
+
+label {
+  display: inline-block;
+  width: 32%;
+  font-size: 13px;
+  color: #374151;
+}
+
+input[type="radio"] + label,
+input[type="checkbox"] + label {
+  width: auto;
+}
+
+select,
+input[type="text"],
+input[type="email"],
+textarea {
+  box-sizing: border-box;
+  width: 64%;
+  margin-bottom: 6px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 13px;
+  font-family: inherit;
+}
+
+textarea {
+  min-height: 90px;
+}
+
+input[type="checkbox"] {
+  margin-left: 32%;
+}
+
+button,
+input[type="submit"] {
+  background-color: #1d4ed8;
+  color: #f9fafb;
+  font-weight: 600;
+  border: none;
+  padding: 9px 22px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 13px;
+  margin-top: 4px;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+button:hover,
+input[type="submit"]:hover {
+  background-color: #1e40af;
+  transform: translateY(-1px);
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .main-nav ul {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .intro-article {
+    grid-template-columns: 1fr;
+  }
+
+  label {
+    width: 100%;
+    margin-bottom: 4px;
+  }
+
+  select,
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+  }
+
+  input[type="checkbox"] {
+    margin-left: 0;
+  }
+}
+
+/* Student Fun Zone */
+
+.sfz-link:hover + .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu:hover {
+  display: block;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 8px 14px;
+  font-size: 13px;
+  text-transform: none;
+  letter-spacing: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #111827;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #e5e7eb;
+  color: #111827;
+}
+
+.sfz-link:hover + .dropdown-menu,
+.dropdown-menu:hover {
+  display: block;
+}
+
+.card-img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+/* ===== Student Fun Zone dropdown ===== */
+
+.has-dropdown {
+  position: relative;
+}
+
+/* sakrij po defaultu */
+.has-dropdown > .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 2px;
+  padding: 8px 0;
+  list-style: none;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.25);
+  min-width: 200px;
+  display: none; /* ključna linija */
+  z-index: 20;
+}
+
+/* prikaži samo na hover cijelog li – stabilno rješenje */
+.has-dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 8px 14px;
+  font-size: 13px;
+  text-transform: none;
+  letter-spacing: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #111827;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #e5e7eb;
+  color: #111827;
+}
+
+/* aktivni SFZ link */
+.sfz-link.is-active {
+  background: #e5e7eb !important;
+  color: #0f172a !important;
+}
+
+/* forma */
+/* Kontakt forma – full width card */
+
+/* Kontakt forma – full width modern design */
+
+.contact-form-card {
+  background-color: #ffffff;
+  border-radius: 14px;
+  padding: 24px 28px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.17);
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  font-family: inherit;
+  box-sizing: border-box;
+  background-color: #f9fafb;
+}
+
+.form-group textarea {
+  min-height: 120px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #1d4ed8;
+  background-color: #ffffff;
+}
+
+.form-actions {
+  margin-top: 10px;
+}
+
+.form-actions button {
+  background-color: #1d4ed8;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.form-actions button:hover {
+  background-color: #1e40af;
+  transform: translateY(-1px);
+}
+
+.error-message {
+  color: #dc2626; /* crvena */
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+/* ===== BINGO – Student Fun Zone ===== */
+
+.bingo-section {
+  margin-top: 24px;
+}
+
+.bingo-card {
+  background-color: #ffffff;
+  border-radius: 14px;
+  padding: 20px 24px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.17);
+  box-sizing: border-box;
+}
+
+.bingo-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.bingo-header-row h2 {
+  margin: 0;
+}
+
+.bingo-controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.bingo-intro {
+  margin-bottom: 12px;
+  color: #4b5563;
+}
+
+.bingo-status {
+  font-weight: 600;
+  margin-bottom: 10px;
+  min-height: 20px;
+  color: #4b5563;
+}
+
+.bingo-status.win {
+  color: #16a34a;
+}
+
+.bingo-table-wrapper {
+  overflow-x: auto;
+}
+
+.bingo-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background-color: #f9fafb;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.bingo-table td {
+  border: 1px solid #e5e7eb;
+}
+
+.bingo-cell {
+  padding: 10px 8px;
+  font-size: 13px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  word-break: break-word;
+  background-color: #ffffff;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.bingo-cell.free {
+  font-weight: 700;
+  background: #e0ecff;
+  color: #1d4ed8;
+}
+
+.bingo-cell.marked {
+  background-color: #1d4ed8;
+  color: #f9fafb;
+}
+
+.bingo-back-link {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal-overlay.visible {
+  display: flex;
+}
+
+.modal-card {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 24px 26px 22px 26px;
+  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.4);
+  max-width: 380px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.modal-card h2 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.modal-card p {
+  margin-top: 0;
+  margin-bottom: 14px;
+  color: #4b5563;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.confetti-dot {
+  position: absolute;
+  border-radius: 999px;
+  opacity: 0;
+  animation-name: confetti-fall;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-10px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(40px) scale(0.8);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .bingo-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .bingo-controls {
+    width: 100%;
+  }
+
+  .bingo-controls button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* PRINT */
+@media print {
+  /* sakrij sve elemente */
+  body * {
+    visibility: hidden !important;
+  }
+
+  .bingo-card,
+  .bingo-card * {
+    visibility: visible !important;
+  }
+
+  .bingo-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    padding: 16px;
+  }
+
+  .modal-overlay,
+  .main-nav,
+  .top-header,
+  .nav-header,
+  .site-footer {
+    display: none !important;
+  }
+}
+
+/* ===== KVIZ – Student Fun Zone ===== */
+
+.quiz-section {
+  margin-top: 24px;
+}
+
+.quiz-card {
+  background-color: #ffffff;
+  border-radius: 14px;
+  padding: 20px 24px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.17);
+  box-sizing: border-box;
+}
+
+.quiz-card h2 {
+  margin-top: 0;
+  margin-bottom: 6px;
+}
+
+.quiz-intro {
+  margin-bottom: 16px;
+  color: #4b5563;
+}
+
+.quiz-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.quiz-question h3 {
+  margin-bottom: 6px;
+}
+
+.quiz-question {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+}
+
+/* označavanje tačnih / netačnih pitanja */
+.quiz-question.correct {
+  border-color: #16a34a;
+  background-color: #ecfdf3;
+}
+
+.quiz-question.incorrect {
+  border-color: #dc2626;
+  background-color: #fef2f2;
+}
+
+.quiz-actions {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* opet koristimo globalni stil buttona, ali dodamo helper klase */
+.primary-btn {
+  background-color: #1d4ed8;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 9px 20px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.primary-btn:hover {
+  background-color: #1e40af;
+  transform: translateY(-1px);
+}
+
+.secondary-btn {
+  background-color: #f3f4f6;
+  color: #111827;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.secondary-btn:hover {
+  background-color: #e5e7eb;
+}
+
+.quiz-result {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #111827;
+  display: none;
+}
+
+.quiz-result.visible {
+  display: block;
+}
+
+.quiz-back-link {
+  margin-top: 16px;
+  text-align: center;
+}
+
+/* ===== WHITEBOARD – Student Fun Zone ===== */
+
+.whiteboard-section {
+  margin-top: 24px;
+}
+
+.whiteboard-card {
+  background-color: #ffffff;
+  border-radius: 14px;
+  padding: 20px 24px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.17);
+  box-sizing: border-box;
+}
+
+.whiteboard-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.control-group label {
+  width: auto;
+  margin: 0;
+  font-weight: 500;
+}
+
+.toolbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.whiteboard-canvas-wrap {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#board {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: #ffffff;
+  cursor: crosshair;
+}
+
+.whiteboard-back-link {
+  margin-top: 16px;
+  text-align: center;
+}
+
+/* PRINT – samo whiteboard card */
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+
+  .whiteboard-card,
+  .whiteboard-card * {
+    visibility: visible !important;
+  }
+
+  .whiteboard-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    padding: 16px;
+  }
+
+  .top-header,
+  .nav-header,
+  .site-footer,
+  .whiteboard-toolbar,
+  .whiteboard-back-link,
+  .modal-overlay {
+    display: none !important;
+  }
+}
+
+/* ===== VISUAL / VISION BOARD ===== */
+
+.vision-section {
+  margin-top: 24px;
+}
+
+.vision-card {
+  background-color: #ffffff;
+  border-radius: 14px;
+  padding: 20px 24px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.17);
+  box-sizing: border-box;
+}
+
+.vision-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.vision-board {
+  position: relative;
+  width: 100%;
+  min-height: 520px;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* note */
+.note {
+  position: absolute;
+  width: 180px;
+  min-height: 120px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  cursor: move;
+  font-size: 14px;
+  line-height: 1.4;
+  outline: none;
+}
+
+.color1 {
+  background: #fff7ed;
+}
+.color2 {
+  background: #ecfeff;
+}
+.color3 {
+  background: #f0fdf4;
+}
+.color4 {
+  background: #fef2f2;
+}
+.color5 {
+  background: #eef2ff;
+}
+.color6 {
+  background: #fdf4ff;
+}
+
+/* pinned image */
+.pinned-img {
+  position: absolute;
+  width: 200px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  cursor: move;
+}
+.pinned-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* quote */
+.quote {
+  position: absolute;
+  width: 220px;
+  padding: 10px 12px;
+  background: #ffffff;
+  border-left: 4px solid #1d4ed8;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  cursor: move;
+  font-size: 14px;
+  line-height: 1.4;
+  outline: none;
+}
+
+/* delete pin */
+.delete-btn {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  border: none;
+  background: #111827;
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* recent tray */
+.recent-tray {
+  margin-top: 14px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.recent-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.recent-items {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.recent-item {
+  background: white;
+  border: 1px solid #e5e7eb;
+  padding: 8px;
+  border-radius: 10px;
+  width: 180px;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.recent-item img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* restore btn */
+.restore-btn {
+  background: #1d4ed8;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+/* back link */
+.vision-back-link {
+  margin-top: 16px;
+  text-align: center;
+}
+
+/* PRINT – samo visual board card */
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+
+  .vision-card,
+  .vision-card * {
+    visibility: visible !important;
+  }
+
+  .vision-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: none !important;
+    background: #fff !important;
+    padding: 16px;
+  }
+
+  .top-header,
+  .nav-header,
+  .site-footer,
+  .vision-toolbar,
+  .vision-back-link,
+  .modal-overlay,
+  .recent-tray {
+    display: none !important;
+  }
+}
+
+/* ===== KANBAN BOARD ===== */
+
+.kanban-section {
+  margin-top: 24px;
+}
+
+.kanban-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 20px 24px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.17);
+  box-sizing: border-box;
+}
+
+.kanban-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.board {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.column {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  width: 33.33%;
+  padding: 10px;
+  border-radius: 12px;
+  min-height: 300px;
+}
+
+.column h2 {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+.taskList {
+  min-height: 220px;
+}
+
+.task {
+  background: #fff7a8;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  cursor: grab;
+  user-select: none;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.task:active {
+  cursor: grabbing;
+}
+
+.task.dragging {
+  opacity: 0.6;
+  transform: scale(1.03);
+}
+
+.kanban-back-link {
+  margin-top: 14px;
+  text-align: center;
+}
+
+/* responsive */
+@media (max-width: 900px) {
+  .board {
+    flex-direction: column;
+  }
+  .column {
+    width: 100%;
+  }
+}
+
+/* PRINT – samo kanban card */
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+
+  .kanban-card,
+  .kanban-card * {
+    visibility: visible !important;
+  }
+
+  .kanban-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: none !important;
+    background: #fff !important;
+    padding: 16px;
+  }
+
+  .top-header,
+  .nav-header,
+  .site-footer,
+  .kanban-toolbar,
+  .kanban-back-link,
+  .modal-overlay {
+    display: none !important;
+  }
+}

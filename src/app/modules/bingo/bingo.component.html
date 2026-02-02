@@ -1,0 +1,95 @@
+<!-- HERO SEKCIJA -->
+<article class="intro-article">
+  <div class="intro-text">
+    <h1>Student Fun Zone – Bingo</h1>
+    <p>
+      Bingo je jednostavna, ali zabavna aktivnost za upoznavanje kolega i
+      razbijanje treme na času. Klikni na polje da ga označiš, popuni red,
+      kolonu ili dijagonalu i osvojiš bingo.
+    </p>
+    <p>
+      Svaka nova kartica nasumično generiše izjave, a središnje polje je uvijek
+      besplatno.
+    </p>
+  </div>
+  <div class="intro-media">
+    <img src="assets/images/bingo.jpg" alt="Bingo kartica za studente" />
+  </div>
+</article>
+
+<!-- BINGO SEKCIJA -->
+<section class="bingo-section">
+  <div class="bingo-card">
+    <div class="bingo-header-row">
+      <h2>Bingo kartica</h2>
+      <div class="bingo-controls">
+        <button (click)="generateCard()">Nova kartica</button>
+        <button (click)="resetMarks()">Reset oznaka</button>
+        <button (click)="exportPdf()">Snimi kao PDF</button>
+      </div>
+    </div>
+
+    <p class="bingo-intro">
+      Klikni na polja koja se odnose na tebe ili kolege. Kada kompletiraš red,
+      kolonu ili dijagonalu, dobićeš obavijest da si ostvario bingo.
+    </p>
+
+    <!-- STATUS PORUKA -->
+    <div class="bingo-status" [class.win]="statusWin" *ngIf="statusMessage">
+      {{ statusMessage }}
+    </div>
+
+    <!-- BINGO TABLA -->
+    <div class="bingo-table-wrapper">
+      <table class="bingo-table" aria-label="Bingo tabla">
+        <tbody>
+          <tr *ngFor="let row of bingoBoard">
+            <td
+              *ngFor="let cell of row"
+              [class.bingo-cell]="true"
+              [class.free]="cell.free"
+              [class.marked]="cell.marked"
+              (click)="toggleCell(cell)"
+            >
+              {{ cell.text }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="bingo-back-link">
+      <a routerLink="/dashboard">← Povratak na Dashboard</a>
+    </p>
+  </div>
+</section>
+
+<!-- MODAL OVERLAY -->
+<div
+  class="modal-overlay"
+  [class.visible]="showOverlay"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="bingoWinTitle"
+>
+  <div class="modal-card">
+    <button
+      class="modal-close-btn"
+      type="button"
+      aria-label="Zatvori"
+      (click)="hideOverlay()"
+    >
+      ×
+    </button>
+    <h2 id="bingoWinTitle">Bingo!</h2>
+    <p id="bingoWinMsg">
+      Čestitamo – osvojio si <strong>{{ winType }}</strong
+      >!
+    </p>
+    <div class="modal-actions">
+      <button type="button" (click)="newGameFromModal()">Nova kartica</button>
+      <button type="button" (click)="resetFromModal()">Reset oznaka</button>
+      <button type="button" (click)="printFromModal()">Snimi u PDF</button>
+    </div>
+  </div>
+</div>
