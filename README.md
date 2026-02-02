@@ -17,10 +17,10 @@ ng serve
 Aplikacija će biti dostupna na:
 http://localhost:4200/
 
-🔥 Firebase konfiguracija i deploy
+## Firebase konfiguracija i deploy
 Projekat koristi Firebase Hosting za produkcioni deploy.
 
-🌍 Live verzija
+### Live verzija
 Aplikacija je dostupna na:
 https://personal-life-dashboard-f9406.web.app
 
@@ -31,19 +31,20 @@ Deploy na Firebase:
 
 firebase deploy --only hosting
 
-📱 Funkcionalnosti
+## Funkcionalnosti
+
 Module Selector
 Glavni meni aplikacije sadrži dvije sekcije:
 
-Tracker moduli
+### Tracker moduli
 Korisnik bira koje module želi prikazati na svom dashboard-u.
 Svaki modul se selektuje pomoću checkbox-a, a izbor se čuva u localStorage-u po korisničkom imenu.
 
-Student Fun Zone
+### Student Fun Zone
 Interaktivni moduli koji se ne prikazuju na dashboard-u, već se otvaraju kao zasebne stranice.
 
-🎯 Student Fun Zone moduli
-🎲 Bingo
+### Student Fun Zone moduli
+### Bingo
 Klasična Bingo igra sa 5x5 tablicom
 
 Nasumično izvlačenje brojeva
@@ -56,7 +57,7 @@ WIN animacija
 
 Reset dugme za novu igru
 
-🧠 Kviz
+### Kviz
 5 pitanja vezanih za web development
 
 Radio buttons i checkboxes za odgovore
@@ -67,7 +68,7 @@ Automatski izračun skora
 
 Bonus animacija za perfect score (konfeti)
 
-📋 Kanban Board
+### Kanban Board
 Tri kolone: To Do, In Progress, Done
 
 Dodavanje kartica sa naslovom i opisom
@@ -80,7 +81,7 @@ Export u PDF (koristeći window.print)
 
 Slanje putem email-a (mailto link)
 
-🎨 Whiteboard
+### Whiteboard
 Canvas element za crtanje
 
 Birač boje (color picker)
@@ -93,9 +94,9 @@ Clear dugme za brisanje svega
 
 Download crteža kao .png
 
-Watermark logo u pozadini (opacity 0.08)
+Watermark logo u pozadini
 
-📌 Vision Board
+### Vision Board
 Dodavanje post-it bilješki (nasumične boje)
 
 Dodavanje slika iz galerije
@@ -112,8 +113,9 @@ Restore funkcija
 
 Automatsko čuvanje u localStorage
 
-🏗️ Tehnička implementacija
-Frontend
+## Tehnička implementacija
+
+### Frontend
 Angular 19 sa standalone komponentama 
 
 TypeScript za type safety
@@ -131,14 +133,15 @@ Window Print API (PDF export)
 
 Mailto protokol (email funkcionalnost)
 
-🔐 Backend i hosting
+### Backend i hosting
+
 Firebase Hosting (production deploy)
 
 Firebase Authentication (Email / Password)
 
 Firebase Firestore (planirano za buduće verzije)
 
-📂 Struktura projekta
+## Struktura projekta
 src/
 ├── app/
 │   ├── components/          # Login, Register, Module Selector
@@ -152,7 +155,7 @@ src/
 │   └── models/              # TypeScript interfejsi
 └── assets/
     └── images/              # Slike i Vision Board galerija
-🎨 Dizajn
+## Dizajn
 Aplikacija koristi CSS varijable za podršku različitih tema
 
 --background-color
@@ -167,11 +170,11 @@ Aplikacija koristi CSS varijable za podršku različitih tema
 
 Layout je responsive i prilagođen desktop, tablet i mobilnim uređajima.
 
-🌍 Live verzija
+## Live verzija
 Aplikacija je dostupna na:
 https://personal-life-dashboard-f9406.web.app
 
-🔐 Testiranje
+## Testiranje
 Aplikacija koristi demonstracionu login logiku.
 
 Email: test@email.com
@@ -180,17 +183,9 @@ Password: 123456
 
 Napomena: Fokus projekta je frontend funkcionalnost, ne kompletna backend validacija.
 
-📝 Napomene
-Podaci se čuvaju lokalno u browser-u (localStorage)
 
-Svaki korisnik ima sopstveni set podataka baziran na username-u
+## Dependencies (ključni paketi)
 
-Fun Zone moduli mogu se koristiti i bez login-a direktnim pristupom URL-u
-
-Whiteboard i Vision Board se automatski čuvaju
-
-
-📦 Dependencies (ključni paketi)
 @angular/core ^19.x
 
 @angular/router ^19.x
@@ -201,9 +196,9 @@ firebase ^10.x
 
 html2canvas ^1.x
 
-👨‍💻 Autor
+## Autor
 Ime i prezime: Eldar Dizdarević
-Email: eldar@email.com
+Email: dzceldar@gmail.com
 Akademska godina: 2025/2026
-Predmet: Web Programiranje 2
-Projekat: Personal Life Dashboard
+Predmet: Web Programiranje
+Projekat: Personal Life Dashboard - Angular & Firebase
