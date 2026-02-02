@@ -174,15 +174,6 @@ Layout je responsive i prilagođen desktop, tablet i mobilnim uređajima.
 Aplikacija je dostupna na:
 https://personal-life-dashboard-f9406.web.app
 
-## Testiranje
-Aplikacija koristi demonstracionu login logiku.
-
-Email: test@email.com
-
-Password: 123456
-
-Napomena: Fokus projekta je frontend funkcionalnost, ne kompletna backend validacija.
-
 
 ## Dependencies (ključni paketi)
 
